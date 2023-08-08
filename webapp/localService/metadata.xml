@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZSG_ODATA_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="Supplier" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="BP_ID"/>
+                </Key>
+                <Property Name="BP_ID" Type="Edm.String" Nullable="false" sap:unicode="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BP_ROLE" Type="Edm.String" Nullable="false" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EMAIL_ADDRESS" Type="Edm.String" Nullable="false" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PHONE_NUMBER" Type="Edm.String" Nullable="false" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FAX_NUMBER" Type="Edm.String" Nullable="false" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="WEB_ADDRESS" Type="Edm.String" Nullable="false" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="COMPANY_NAME" Type="Edm.String" Nullable="false" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LEGAL_FORM" Type="Edm.String" Nullable="false" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CURRENCY_CODE" Type="Edm.String" Nullable="false" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CITY" Type="Edm.String" Nullable="false" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="POSTAL_CODE" Type="Edm.String" Nullable="false" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="STREET" Type="Edm.String" Nullable="false" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BUILDING" Type="Edm.String" Nullable="false" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="COUNTRY" Type="Edm.String" Nullable="false" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="Product" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="PRODUCT_ID"/>
+                </Key>
+                <Property Name="PRODUCT_ID" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Product ID" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TYPE_CODE" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Type Code" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CATEGORY" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Category" sap:sortable="false"/>
+                <Property Name="NAME" Type="Edm.String" Nullable="false" MaxLength="255" sap:unicode="false" sap:label="Description" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DESCRIPTION" Type="Edm.String" Nullable="false" MaxLength="255" sap:unicode="false" sap:label="Description" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SUPPLIER_ID" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Business Partner ID" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SUPPLIER_NAME" Type="Edm.String" Nullable="false" MaxLength="80" sap:unicode="false" sap:label="Company" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TAX_TARIF_CODE" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Tax Tariff Code" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MEASURE_UNIT" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Unit of Measure" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="PRICE" Type="Edm.Decimal" Nullable="false" Precision="31" Scale="4" sap:unicode="false" sap:unit="CURRENCY_CODE" sap:label="Price" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CURRENCY_CODE" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Currency Code" sap:sortable="false" sap:filterable="false" sap:semantics="currency-code"/>
+                <Property Name="DIM_UNIT" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Dimension Unit" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="PRODUCT_PIC_URL" Type="Edm.String" MaxLength="255" sap:unicode="false" sap:label="Image" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="TO_SUPPLIER" Relationship="ZSG_ODATA_SRV.Asso_Product_Supplier" FromRole="FromRole_Asso_Product_Supplier" ToRole="ToRole_Asso_Product_Supplier"/>
+            </EntityType>
+            <EntityType Name="ProductImg" m:HasStream="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="PRODUCT_ID"/>
+                </Key>
+                <Property Name="PRODUCT_ID" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PRODUCT_PIC_URL" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MIME_TYPE" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <Association Name="Asso_Product_Supplier" sap:content-version="1">
+                <End Type="ZSG_ODATA_SRV.Product" Multiplicity="1" Role="FromRole_Asso_Product_Supplier"/>
+                <End Type="ZSG_ODATA_SRV.Supplier" Multiplicity="1" Role="ToRole_Asso_Product_Supplier"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_Asso_Product_Supplier">
+                        <PropertyRef Name="PRODUCT_ID"/>
+                    </Principal>
+                    <Dependent Role="ToRole_Asso_Product_Supplier">
+                        <PropertyRef Name="BP_ID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="ZSG_ODATA_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="SupplierSet" EntityType="ZSG_ODATA_SRV.Supplier" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="ProductSet" EntityType="ZSG_ODATA_SRV.Product" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="ProductImgSet" EntityType="ZSG_ODATA_SRV.ProductImg" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <AssociationSet Name="Asso_Product_SupplierSet" Association="ZSG_ODATA_SRV.Asso_Product_Supplier" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ProductSet" Role="FromRole_Asso_Product_Supplier"/>
+                    <End EntitySet="SupplierSet" Role="ToRole_Asso_Product_Supplier"/>
+                </AssociationSet>
+                <FunctionImport Name="GetMostExpensiveProduct" ReturnType="ZSG_ODATA_SRV.Product" EntitySet="ProductSet" m:HttpMethod="GET">
+                    <Parameter Name="I_CATEGORY" Type="Edm.String" Mode="In"/>
+                </FunctionImport>
+            </EntityContainer>
+            <atom:link rel="self" href="https://s4h:4000/sap/opu/odata/sap/ZSG_ODATA_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="https://s4h:4000/sap/opu/odata/sap/ZSG_ODATA_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
